@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qwen-tpu-dflash"
+version = "0.2.0"
+description = "Qwen3.8-Flash-Next generation, capture and SpecForge DFlash2 training on CPU/TPU"
+requires-python = ">=3.12"
+dependencies = ["torch==2.14.1", "transformers==5.19.0", "safetensors==0.8.0", "accelerate==1.15.0"]
+
+[project.optional-dependencies]
+test = ["pytest==9.1.1"]
+jax = ["jax[cpu]==0.8.3"]
+data = ["datasets>=4.0,<6"]
+
+[project.scripts]
+qwen-dflash = "qwen_tpu.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

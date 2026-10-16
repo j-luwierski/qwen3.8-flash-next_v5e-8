@@ -1,0 +1,62 @@
+{
+  "model": "runs/cpu-demo/target",
+  "out": "runs/cpu-demo/job",
+  "workers": 2,
+  "backend": "jax",
+  "device": "cpu",
+  "devices": "all",
+  "dtype": "float32",
+  "layers": [
+    0,
+    2
+  ],
+  "data": {
+    "data": "configs/demo-prompts.jsonl",
+    "samples": 8,
+    "seed": 42,
+    "validation_fraction": 0.25
+  },
+  "chat_template_kwargs": {
+    "enable_thinking": true
+  },
+  "generation": {
+    "max_new_tokens": 6,
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "top_k": 20
+  },
+  "max_length": 32,
+  "feature_mode": "tokens",
+  "pack_worker": true,
+  "seed": 42,
+  "training": {
+    "backend": "jax",
+    "device": "cpu",
+    "devices": "all",
+    "steps": 3,
+    "draft_layers": 1,
+    "block_size": 4,
+    "mask_token_id": 127,
+    "anchors": 2,
+    "batch_size": 2,
+    "objective_chunk_blocks": 2,
+    "eval_every": 1,
+    "checkpoint_every": 1
+  },
+  "engine_options": {
+    "qsa_backend": "jax",
+    "query_chunk_size": 128,
+    "kv_cache_block_size": 256,
+    "expert_token_tile": 32,
+    "weight_cache_mib": 16,
+    "lm_head_chunk_size": 16384,
+    "compilation_cache_dir": "runs/jax-compilation-cache"
+  },
+  "runtime": {
+    "max_run_seconds": null,
+    "save_margin_seconds": 300,
+    "checkpoint_interval_seconds": 300,
+    "archive_on_pause": true,
+    "resume_from": null
+  }
+}

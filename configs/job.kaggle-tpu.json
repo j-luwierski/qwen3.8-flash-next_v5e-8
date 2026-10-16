@@ -1,0 +1,68 @@
+{
+  "model": "/kaggle/input/qwen38-flash-next/model",
+  "out": "/kaggle/working/qwen-job",
+  "workers": 4,
+  "backend": "jax",
+  "device": "tpu",
+  "devices": "all",
+  "dtype": "bfloat16",
+  "layers": [
+    3,
+    13,
+    23,
+    33,
+    43
+  ],
+  "data": {
+    "data": "/kaggle/input/qwen-prompts/prompts.jsonl",
+    "samples": 5000,
+    "seed": 42,
+    "validation_fraction": 0.02
+  },
+  "chat_template_kwargs": {
+    "enable_thinking": true
+  },
+  "generation": {
+    "max_new_tokens": 2048,
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "top_k": 20
+  },
+  "max_length": 4096,
+  "feature_mode": "tokens",
+  "pack_worker": true,
+  "seed": 42,
+  "training": {
+    "backend": "jax",
+    "device": "tpu",
+    "devices": "all",
+    "epochs": 1,
+    "draft_layers": 5,
+    "block_size": 8,
+    "mask_token_id": 248070,
+    "anchors": 16,
+    "batch_size": 1,
+    "precision": "bfloat16",
+    "gradient_checkpointing": true,
+    "objective_chunk_blocks": 8,
+    "warmup_steps": 100,
+    "eval_every": 100,
+    "checkpoint_every": 100
+  },
+  "engine_options": {
+    "qsa_backend": "jax",
+    "query_chunk_size": 128,
+    "kv_cache_block_size": 256,
+    "expert_token_tile": 32,
+    "weight_cache_mib": 1024,
+    "lm_head_chunk_size": 16384,
+    "compilation_cache_dir": "/kaggle/working/jax-compilation-cache"
+  },
+  "runtime": {
+    "max_run_seconds": 10800,
+    "save_margin_seconds": 600,
+    "checkpoint_interval_seconds": 300,
+    "archive_on_pause": true,
+    "resume_from": null
+  }
+}
